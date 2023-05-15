@@ -1,21 +1,18 @@
-// class Solution {
-//     public boolean containsDuplicate(int[] nums) {
-//         System.out.println("hi");
-//         return false;
-//     }
-// }
+import java.util.*;
 
-import java.util.List;
-import java.util.HashSet;
 class Solution {
-public boolean containsDuplicate(int[] nums) {
-HashSet num = new HashSet<>();
-for(int i=0; i<nums.length;i++){
-num.add(nums[i]);
+    public boolean containsDuplicate(int[] nums) {
+       Map<Integer,Integer> checkDuplicate = new HashMap<>();
+       for(int num : nums) {
+           if(checkDuplicate.get(num) == null) {
+               checkDuplicate.put(num,1);
+           } else {
+               int value = checkDuplicate.get(num);
+               checkDuplicate.replace(num,value + 1);
+               return true;
+           }
+       }
+       return false;
+    }
 }
-if(num.size()!=nums.length)
-return true;
-else
-return false;
-}
-}
+
