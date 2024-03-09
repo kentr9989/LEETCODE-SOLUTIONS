@@ -6,12 +6,7 @@ let productExceptSelf = (nums) => {
   //[x,y,z]
   let answerArr = [];
 
-  //right product
-  //[(1*y),(1*z),z]
-  // want it to be [(1*y) * (1*z),(1*z),1]
-  //left product
-  //[1,(1*x),(1*y)]
-  // want it to be [1,(1*x),(1*y*x)]
+  
   let rightProduct = 1;
   let rightProductArr = [];
   for (let i = 0; i < nums.length; i++) {
@@ -56,5 +51,21 @@ let productExceptSelf = (nums) => {
     // answerArr[i] = leftProductArr[i] * rightProductArr[i];
   }
   // console.log(answerArr);
-  return answerArr;
+  return answerArr
 };
+
+// productExceptSelf([-1, 1, 0, -3, 3]);
+//logic
+// [1,2,3,4]
+//right
+// [1*2,1*3,1*4,1] = [2,3,4,1]
+// want it to be then go left
+// [1*2*3*4,1*3*4,1*4*1,1]
+// [24, 12, 4 , 1]
+
+// [1,2,3,4]
+// left
+// [1,1*1,1*2,1*3] = [1,1,2,3]
+// [1,1*1*1,1*2*1,1*3*2]
+// [1,1,2,6]
+// => [24,12,8,6]
