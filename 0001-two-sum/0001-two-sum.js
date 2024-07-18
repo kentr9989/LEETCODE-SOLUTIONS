@@ -3,23 +3,21 @@
  * @param {number} target
  * @return {number[]}
  */
-let twoSum = (nums, target) => {
-  let map = {};
-  let resultArr = [];
+var twoSum = function(nums, target) {
+     const map = new Map();
 
-  for (const i in nums) {
-    let difference = target - nums[i];
-    // console.log(difference);
-    map[difference] = i;
-  }
-//   console.log(map);
+        for (let index = 0; index < nums.length; index++) {
+            const num = nums[index];
+            const complement = target - num;
+            const sumIndex = map.get(complement);
 
-  for (const [index, value] of nums.entries()) {
-    if (map[value] !== undefined && index !== parseInt(map[value])) {
-      resultArr.push(index);
-      resultArr.push(parseInt(map[value]));
-      return resultArr;
-    }
-  }
-  return resultArr;
+            const isTarget = map.has(complement);
+            if (isTarget) {
+                return [index, sumIndex];
+            }
+
+            map.set(num, index);
+        }
+
+        return [-1, -1];
 };
