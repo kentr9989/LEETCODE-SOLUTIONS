@@ -2,16 +2,11 @@
  * @param {number[]} nums
  * @return {boolean}
  */
-let containsDuplicate = (nums) => {
-    let sortNums = nums.sort();
-    let prevNum = null;
-    for (const num of sortNums) {
-       if (prevNum === num) {
-           return true;
-       }
-       prevNum = num
+var containsDuplicate = function(nums) {
+    let map = new Map();
+    for(const num of nums) {
+        if(map.has(num)) return true;
+        map.set(num,num);
     }
     return false;
-}
-
-// console.log(containsDuplicate([1,2,3,1]));
+};
