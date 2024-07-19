@@ -3,26 +3,41 @@
  * @param {number} k
  * @return {number[]}
  */
-let topKFrequent = (nums, k) => {
-  const frequencyMap = new Map();
-  // Step 1 : count the frequency and set to map
-  nums.forEach((num) =>
-    frequencyMap.set(num, (frequencyMap.get(num) || 0) + 1)
-  );
-
-  // Step 2 : Convert the frequency into array form
-  // to use sort
-  let freqArr = Array.from(frequencyMap.entries());
-
-  // Step 3 : Sort the map by frequency - in ascending order
-  freqArr.sort((a, b) => b[1] - a[1]);
-
-  // Step 4 : Put the result into the array up to k
-  let resArr = [];
-  for (const freq of freqArr) {
-    if ( k == 0) break;
-    resArr.push(freq[0]);
-    k--;
-  }
-  return resArr;
+var topKFrequent = function(nums, k) {
+    // Create a hashmap that count frequency for each num
+    let mapCount = new Map();
+    
+    // Create a frequency 2D array (bucket sort) 
+    // start from 0 to nums.length as it store the frequency
+    // it contains an array of element with same frequency
+    let freqCount = new Array(nums.length+1).fill().map(() => []);
+    
+    // Count the frequency for each element
+    for(const num of nums) {
+        mapCount.set(num, (mapCount.get(num) || 0 ) +1)
+    }
+    // console.log(mapCount);
+    // Add count for frequency array
+    for(const [num, freq] of mapCount) {
+        freqCount[freq].push(num);
+    }
+    // console.log(freqCount);
+    
+    // Create result array
+    // Loop start from freq.length - 1 to >= 0 and res.length !== k
+    // Then loop for each freq[i] add res
+    let res = [];
+    for(let i = freqCount.length -1; i >= 0 && res.length < k; i--) {
+        for(let freq of freqCount[i]) {
+            if(res.length >= k) {
+                return res;
+            }
+            res.push(freq);
+        }
+    }
+    
+    // return result array
+    return res;
+    
+    // Time complexity and space complexity : O(n)
 };
