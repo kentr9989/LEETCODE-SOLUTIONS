@@ -26,4 +26,7 @@ var productExceptSelf = function(nums) {
     }
     
     return answer;
+    
+    // Time complexity : O(n)
+    // Space complexity : O(1) extra space (excluding output array)
 };
