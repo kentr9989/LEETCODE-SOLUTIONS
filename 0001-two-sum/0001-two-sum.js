@@ -4,20 +4,26 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-     const map = new Map();
-
-        for (let index = 0; index < nums.length; index++) {
-            const num = nums[index];
-            const complement = target - num;
-            const sumIndex = map.get(complement);
-
-            const isTarget = map.has(complement);
-            if (isTarget) {
-                return [index, sumIndex];
-            }
-
-            map.set(num, index);
+    // Create a hashmap to store value : index
+    let map = new Map();
+    
+    // Loop through array nums
+    // Find the complement through hashmap
+    // If dont have then we set value : index
+    // If have then return [index, complement-index]
+    for(let i = 0; i < nums.length; i++) {
+        const complement = target - nums[i];
+        
+        if(map.has(complement)) {
+            return [map.get(complement),i];
         }
-
-        return [-1, -1];
+        map.set(nums[i],i);
+    }
+    
+    // return - no solution is found
+    return;
+        
+    // Time complexity : O(n)
+    // Space complexity : O(n)    
+    
 };
