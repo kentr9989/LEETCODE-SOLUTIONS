@@ -23,6 +23,9 @@ var characterReplacement = function(s, k) {
         maxF = Math.max(maxF,countMap.get(s[right]))
         while( (right - left + 1) - maxF > k ) {
             countMap.set(s[left], countMap.get(s[left]) - 1);
+            if(countMap.get(s[left]) === 0) {
+                countMap.delete(s[left]);
+            }
             left++;
         }
         
