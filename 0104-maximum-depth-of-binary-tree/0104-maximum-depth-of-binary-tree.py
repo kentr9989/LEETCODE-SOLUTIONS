@@ -10,16 +10,20 @@ class Solution:
         # Recursive DFS
         # if not root
         #   return 0
-        if not root:
-            return 0
+        # if not root:
+        #     return 0
         
         # return 1 + max(self.maxDepth(root.left),self.maxDepth(root.right))
-        return 1 + max(self.maxDepth(root.left),self.maxDepth(root.right))
+        # return 1 + max(self.maxDepth(root.left),self.maxDepth(root.right))
         ##################################################################
         # Interative BFS
         # if root is null return 0
-        # init level 1
+        if not root:
+            return 0
+        # init level 0
+        level = 0
         # init queue with only root
+        q = deque([root])
         # while q is not null:
         #   loop from i to length of q:
         #       pop left from queue
@@ -28,8 +32,16 @@ class Solution:
         #       if node.irhgt not null:
         #           append node.right to queue
         #   increase level by 1
-        
+        while q:
+            for i in range(len(q)):
+                node = q.popleft()
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
+            level += 1
         # return level
+        return level
         ####################################################################
         
         # Iterative DFS preorder
