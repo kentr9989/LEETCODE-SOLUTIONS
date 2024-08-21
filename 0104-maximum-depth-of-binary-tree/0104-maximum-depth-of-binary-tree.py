@@ -18,12 +18,12 @@ class Solution:
         ##################################################################
         # Interative BFS
         # if root is null return 0
-        if not root:
-            return 0
+        # if not root:
+        #     return 0
         # init level 0
-        level = 0
+        # level = 0
         # init queue with only root
-        q = deque([root])
+        # q = deque([root])
         # while q is not null:
         #   loop from i to length of q:
         #       pop left from queue
@@ -32,28 +32,38 @@ class Solution:
         #       if node.irhgt not null:
         #           append node.right to queue
         #   increase level by 1
-        while q:
-            for i in range(len(q)):
-                node = q.popleft()
-                if node.left:
-                    q.append(node.left)
-                if node.right:
-                    q.append(node.right)
-            level += 1
+        # while q:
+        #     for i in range(len(q)):
+        #         node = q.popleft()
+        #         if node.left:
+        #             q.append(node.left)
+        #         if node.right:
+        #             q.append(node.right)
+        #     level += 1
         # return level
-        return level
+        # return level
         ####################################################################
         
         # Iterative DFS preorder
         # if root is null return 0
+        if not root:
+            return 0
         # init stack when [root,depth of 1]
+        stack = [[root,1]]
         # init res = 1
+        res = 1
         # while stack is not null is not null:
         #   pop the node and depth from stack
         #   if node not null:
         #       res = max(res,depth)
         #       add children of node (left and right) with new depth to stack
-        
+        while stack:
+            node,depth = stack.pop()
+            if node:
+                res = max(res,depth)
+                stack.append([node.left,depth + 1])
+                stack.append([node.right,depth + 1])
+                
         # return res
-        
+        return res
         
