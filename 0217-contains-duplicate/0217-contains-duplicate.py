@@ -1,19 +1,19 @@
-class Solution(object):
+class Solution:
     def containsDuplicate(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: bool
-        """
-        # Space complexity : O(size of nums)
-        # Time complexity : O(size of nums)
-        freq_count = {}
+        count_freq = {}
         for num in nums:
-            if num in freq_count:
+            if num in count_freq:
                 return True
-            freq_count[num] = True
+            count_freq[num] = True
         return False
-        
+    
+if __name__ == "__main__":
+    solution = Solution()
+    
+    # Test case 1: No duplicates
+    nums1 = [1, 2, 3, 4]
+    print(f"Test case 1: {solution.containsDuplicate(nums1)}")  # Expected output: False
 
-    
-    
-        
+    # Test case 2: Has duplicates
+    nums2 = [1, 2, 3, 1]
+    print(f"Test case 2: {solution.containsDuplicate(nums2)}")  # Expected output: True
