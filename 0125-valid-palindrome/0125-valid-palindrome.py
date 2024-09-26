@@ -4,13 +4,15 @@ class Solution:
     def isPalindrome(self, s: str) -> bool:
         # print(self.isAlphanumeric('a'))
         l , r = 0 , len(s) - 1
-        while l <= r:
-            print(l)
-            while not self.isAlphanumeric(s[l]) and l < len(s) - 1:
+        while l < r:
+            
+            while not self.isAlphanumeric(s[l]) and l < r:
                 l += 1
-            while not self.isAlphanumeric(s[r]) and r >= l:
+            while not self.isAlphanumeric(s[r]) and l < r:
                 r -= 1
-            if s[l].lower() != s[r].lower() and r >= l:
+            # print(f"{l}")
+            # print(f"{r}")
+            if s[l].lower() != s[r].lower():
                 return False
             l += 1
             r -= 1
