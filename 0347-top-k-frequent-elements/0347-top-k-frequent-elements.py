@@ -1,33 +1,78 @@
 class Solution:
-    # Time + space complexity : O(n)
-    # by using bucket sort
-    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        # Create freq_map {element, count}
-        # Put all value to the freq_map
-        freq_map = {}
+    def topKFrequent(self,nums: List[int], k:int) -> List[int]:
+        # map to store frequency
+        map_freq = {}
         for num in nums:
-            freq_map[num] = 1 + freq_map.get(num,0)
-            
-        # Init 2d freq array of length of num + 1
-        # each element is an array 
-        # Put all the value to the freq 2d array
-        freq_array = [[] for i in range(len(nums) + 1)]
-        for value,frequency in freq_map.items():
-            freq_array[frequency].append(value)
-      
-        # Int res array
-        # Loop through the freq array from top to 0:
-        #   Loop through the array for each freq index:
-        #       push in to res array
-        #       if len(res) equal k:
-        #           then res
-        res = []
-        for i in range(len(freq_array) - 1, 0 ,-1) :
-            for value in freq_array[i]:
-                res.append(value)
-                if len(res) == k:
-                    return res
+            if num in nums:
+                map_freq[num] = map_freq.get(num,0) + 1
+        print(f"Map freq: {map_freq}")
         
-        # return res
+        # map to store group frequency [arr[]]
+        map_group_freq = [[] for i in range(len(nums) + 1)]
+        for value,freq in map_freq.items():
+            print(value,freq)
+            map_group_freq[freq].append(value)
+        print(f"Map group freq: {map_group_freq}")
+        
+        # return k element by looping through map_group_freq
+        res = []
+        count_k = 0
+        for freq in range(len(nums), 0 , -1):
+            print(f"Freq: {freq}")
+            for value in map_group_freq[freq]:
+                if count_k == k:
+                    return res
+                count_k += 1
+                res.append(value)
+                
+                # print(f" res: {res}")
+                # print(f" value: {value}")
+        
+       
         return res
+# if __name__ == "__main__":
+#     solution = Solution()
+#     result = solution.topKFrequent([1],1)
+#     print(f"Result: {result}")
+
+
+# class Solution:
+#     # n : length of nums
+#     # Time  O(n)
+#     # Space complexity : O(n)
+#     # by using bucket sort
+#     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+# #         # Create dict freq_count {value : count}
+# #         freq_count = {}
+# #         # Assign all element to freq_count
+# #         for num in nums:
+# #             freq_count[num] = freq_count.get(num,0) + 1
+                
+# #         # Create 2d array freq_array as key and value is the value
+# #         # that have the same frequency. The length of array is 
+# #         # from 0 -> length of nums because worst case is 1 element
+# #         # have occur nums amount of time
+# #         freq_array = [[] for i in range(len(nums) + 1)]
+                
+# #         # Put all the key and value to freq_array
+# #         for value,frequency in freq_count.items():
+# #             freq_array[frequency].append(value)
+            
+# #         # Create res array
+# #         res = []
+        
+# #         # Do a 2 for loop from from end to 1
+# #         # push the value in to res
+# #         # if length of res equal k:
+# #         #   return res
+# #         for i in range(len(freq_array) -1,0,-1):
+# #             for value in freq_array[i]:
+# #                 res.append(value)
+# #                 if len(res) == k:
+# #                     return res
+            
+            
+# #         # return [] assume it doesnt match k
+# #         return []
+
       
