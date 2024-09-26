@@ -2,24 +2,46 @@ class Solution:
     # Time complexity : O(n)
     # Space complexity: O(1)
     def isPalindrome(self, s: str) -> bool:
-        left, right = 0, len(s) - 1
-        while left < right:
-            while left < right and not self.isAlphaNumeric(s[left]):
-                left += 1
-            while left < right and not self.isAlphaNumeric(s[right]):
-                right -= 1
-            if s[left].lower() != s[right].lower():
+        # print(self.isAlphanumeric('a'))
+        l , r = 0 , len(s) - 1
+        while l <= r:
+            print(l)
+            while not self.isAlphanumeric(s[l]) and l < len(s) - 1:
+                l += 1
+            while not self.isAlphanumeric(s[r]) and r >= l:
+                r -= 1
+            if s[l].lower() != s[r].lower() and r >= l:
                 return False
-            left += 1
-            right -= 1
+            l += 1
+            r -= 1
+        return True
+    
+    def isAlphanumeric(self,c: str) -> bool :
+        if (ord('a') <= ord(c) <= ord('z') or
+            ord('A') <= ord(c) <= ord('Z') or
+            ord('0') <= ord(c) <= ord('9')
+           ) :
+            return True
+        return False
+#     def isPalindrome(self, s: str) -> bool:
+#         left, right = 0, len(s) - 1
+#         while left < right:
+#             while left < right and not self.isAlphaNumeric(s[left]):
+#                 left += 1
+#             while left < right and not self.isAlphaNumeric(s[right]):
+#                 right -= 1
+#             if s[left].lower() != s[right].lower():
+#                 return False
+#             left += 1
+#             right -= 1
             
-        return True    
+#         return True    
                 
-    def isAlphaNumeric(self, c):
-        return (ord("A") <= ord(c) <= ord("Z") or
-                ord("a") <= ord(c) <= ord("z") or
-                ord("0") <= ord(c) <= ord("9")
-                )
+#     def isAlphaNumeric(self, c):
+#         return (ord("A") <= ord(c) <= ord("Z") or
+#                 ord("a") <= ord(c) <= ord("z") or
+#                 ord("0") <= ord(c) <= ord("9")
+#                 )
             
         
 #         # Init left and right pointer
