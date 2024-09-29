@@ -3,16 +3,34 @@ class Solution:
     # Space complexity : O(n)
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
         res = [0] * len(temperatures)
-        
         stack = []
         
-        for index,temp in enumerate(temperatures):
-            while stack and temp > stack[-1][1]:
-                stack_index,stack_temp = stack.pop()
-                res[stack_index] = index - stack_index
-            stack.append([index,temp])
-        
+        for index,value in enumerate(temperatures):
+
+                
+            while stack and value > stack[-1][1]:
+                curr_index,curr_temperature = stack.pop()
+                res[curr_index] = index - curr_index
+            
+            
+            stack.append([index,value])
+            # print(f"stack: {stack}")
         return res
+        
+        
+        
+        
+        
+       
+    
+    
+    
+    
+    
+    
+    
+    
+    
         # # init res array
         # res = [0] * len(temperatures)
         # # init stack of [temp,index]
