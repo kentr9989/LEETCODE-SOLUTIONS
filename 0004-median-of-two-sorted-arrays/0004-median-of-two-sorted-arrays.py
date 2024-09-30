@@ -18,7 +18,7 @@ class Solution:
             Bright = B[j+1] if (j  + 1) < len(B) else float("infinity")
             
             if Aleft <= Bright and Bleft <= Aright:
-                if total % 2:  #odd
+                if total % 2 == 1:  #odd
                     return min(Aright,Bright)
                 else:  # even
                     return (max(Aleft,Bleft) + min(Aright,Bright)) / 2
