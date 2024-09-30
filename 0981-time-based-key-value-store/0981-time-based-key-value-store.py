@@ -2,12 +2,16 @@ class TimeMap:
 
     def __init__(self):
         self.map = {} # key : [[value, timestamp]]
-
+    
+    # Time complexity: O(1)
+    # Space complexity: O(m * n) - n is the key and m value pair
     def set(self, key: str, value: str, timestamp: int) -> None:
         if key not in self.map:
             self.map[key] = []
         self.map[key].append([value,timestamp])
-
+    
+    # Time complexity: O(logn)
+    # Space complexity: O(1)
     def get(self, key: str, timestamp: int) -> str:
         if key not in self.map:
             return ""
