@@ -6,6 +6,8 @@
 
 
 class Solution:
+    # Time complexity: O(n)
+    # Space complexity: O(1)
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         if not head:
             return False
