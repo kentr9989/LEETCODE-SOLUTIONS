@@ -5,8 +5,15 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    # Time complexity O(n)
+    
     def maxDepth(self, root: Optional[TreeNode]) -> int:
+        # Recursive DFS:
+        # Time complexity O(n)
+        # Space complexity O(logn)
+        if not root: 
+            return 0
+        return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
+        
         # Recursive DFS
         # if not root
         #   return 0
@@ -29,7 +36,7 @@ class Solution:
         #       pop left from queue
         #       if node.left not null:
         #           append node.left to queue
-        #       if node.irhgt not null:
+        #       if node.right not null:
         #           append node.right to queue
         #   increase level by 1
         # while q:
@@ -46,24 +53,24 @@ class Solution:
         
         # Iterative DFS preorder
         # if root is null return 0
-        if not root:
-            return 0
-        # init stack when [root,depth of 1]
-        stack = [[root,1]]
-        # init res = 1
-        res = 1
-        # while stack is not null is not null:
-        #   pop the node and depth from stack
-        #   if node not null:
-        #       res = max(res,depth)
-        #       add children of node (left and right) with new depth to stack
-        while stack:
-            node,depth = stack.pop()
-            if node:
-                res = max(res,depth)
-                stack.append([node.left,depth + 1])
-                stack.append([node.right,depth + 1])
+#         if not root:
+#             return 0
+#         # init stack when [root,depth of 1]
+#         stack = [[root,1]]
+#         # init res = 1
+#         res = 1
+#         # while stack is not null is not null:
+#         #   pop the node and depth from stack
+#         #   if node not null:
+#         #       res = max(res,depth)
+#         #       add children of node (left and right) with new depth to stack
+#         while stack:
+#             node,depth = stack.pop()
+#             if node:
+#                 res = max(res,depth)
+#                 stack.append([node.left,depth + 1])
+#                 stack.append([node.right,depth + 1])
                 
-        # return res
-        return res
+#         # return res
+#         return res
         
