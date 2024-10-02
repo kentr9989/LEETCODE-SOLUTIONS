@@ -10,48 +10,57 @@ class Solution:
         # Recursive DFS:
         # Time complexity O(n)
         # Space complexity O(logn)
-        if not root: 
-            return 0
-        return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
-        
-        # Recursive DFS
-        # if not root
-        #   return 0
-        # if not root:
+        # if not root: 
         #     return 0
-        
-        # return 1 + max(self.maxDepth(root.left),self.maxDepth(root.right))
-        # return 1 + max(self.maxDepth(root.left),self.maxDepth(root.right))
+        # return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
+
         ##################################################################
         # Interative BFS
-        # if root is null return 0
-        # if not root:
-        #     return 0
-        # init level 0
-        # level = 0
-        # init queue with only root
-        # q = deque([root])
-        # while q is not null:
-        #   loop from i to length of q:
-        #       pop left from queue
-        #       if node.left not null:
-        #           append node.left to queue
-        #       if node.right not null:
-        #           append node.right to queue
-        #   increase level by 1
-        # while q:
-        #     for i in range(len(q)):
-        #         node = q.popleft()
-        #         if node.left:
-        #             q.append(node.left)
-        #         if node.right:
-        #             q.append(node.right)
-        #     level += 1
-        # return level
-        # return level
+        # Time complexity O(n)
+        # Space complexity O(n)
+#         if not root: 
+#             return 0
+        
+#         level = 0
+#         q = deque([root])
+#         while q:
+#             for i in range(len(q)):
+#                 node = q.popleft()
+#                 if node.left:
+#                     q.append(node.left)
+#                 if node.right:
+#                     q.append(node.right)
+#             level += 1
+#         return level
         ####################################################################
         
         # Iterative DFS preorder
+        if not root: 
+            return 0
+        stack = [[root,1]]
+        res = 0
+        
+        while stack:
+            node, level = stack.pop()
+            # print(f"node: {node}")
+            # print(f"level: {level}")
+            if node.left:
+                stack.append([node.left,level + 1])
+            # print(f"node: {node}")
+            # print(f"level: {level}")
+            if node.right:
+                stack.append([node.right,level + 1])
+            res = max(res,level)
+        return res
+        
+        
+        
+        
+        
+        
+        
+        
+        
         # if root is null return 0
 #         if not root:
 #             return 0
