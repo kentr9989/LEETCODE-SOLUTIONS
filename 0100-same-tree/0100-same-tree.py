@@ -7,24 +7,56 @@
 class Solution:
     # Time complexity : O(n) not balanced and O(logn) balanced 
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        # if both tree empty:
-        #   return True
+        print(f"p: {p}")
+        print(f"q: {q}")
         if not p and not q:
             return True
-        # if one of the tree is empty:
-        #   return False
-        if not p or not q:
+        if p and not q :
+            return False
+        if not p and q:
             return False
         
-        # if value of p not equal value of q:
-        #   return False
-        if p.val != q.val:
+        same = self.isSameTree(p.left,q.left) and self.isSameTree(p.right,q.right)
+        if p.val == q.val and same:
+            return True
+        else: 
             return False
         
-        # return ( call recursive on p.left and q.left AND
-        # call recursive on p.right and q.right)
-        return (self.isSameTree(p.left, q.left) and
-               self.isSameTree(p.right,q.right))
+        
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        
+        
+        
+        
+#         # if both tree empty:
+#         #   return True
+#         if not p and not q:
+#             return True
+#         # if one of the tree is empty:
+#         #   return False
+#         if not p or not q:
+#             return False
+        
+#         # if value of p not equal value of q:
+#         #   return False
+#         if p.val != q.val:
+#             return False
+        
+#         # return ( call recursive on p.left and q.left AND
+#         # call recursive on p.right and q.right)
+#         return (self.isSameTree(p.left, q.left) and
+#                self.isSameTree(p.right,q.right))
         
         
         
