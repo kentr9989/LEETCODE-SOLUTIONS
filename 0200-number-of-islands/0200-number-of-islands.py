@@ -32,10 +32,10 @@ class Solution:
                     islands += 1
                     bfs(r,c)
                     
-        for r in range(ROWS):
-            for c in range(COLS):
-                print(grid[r][c], end= ' ')
-            print()
+        # for r in range(ROWS):
+        #     for c in range(COLS):
+        #         print(grid[r][c], end= ' ')
+        #     print()
         
         return islands
                 
