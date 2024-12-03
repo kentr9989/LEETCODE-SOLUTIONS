@@ -2,21 +2,48 @@ class Solution:
     # Time complexity : O(n)
     # Space complexity : O(1)
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-        res = [1] * len(nums)
-        
+        res = [1 for i in range(len(nums))]
+        print(f"res: {res}")
         prefix = 1
-        for index,num in enumerate(nums):
+        for index in range(0, len(nums), 1):
             res[index] = prefix
-            prefix *= num
-        print(res)
-        
+            prefix *= nums[index]
+        print(f"res: {res}")
         postfix = 1
-        # res2 = [1] * len(nums)
-        for index in range(len(nums) - 1, -1, -1):
+        for index in range(len(nums) -1,-1,-1):
             res[index] *= postfix
             postfix *= nums[index]
-        # print(res2)    
+        print(f"res: {res}")
+        
         return res
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         res = [1] * len(nums)
+        
+#         prefix = 1
+#         for index,num in enumerate(nums):
+#             res[index] = prefix
+#             prefix *= num
+#         print(res)
+        
+#         postfix = 1
+#         # res2 = [1] * len(nums)
+#         for index in range(len(nums) - 1, -1, -1):
+#             res[index] *= postfix
+#             postfix *= nums[index]
+#         # print(res2)    
+#         return res
         
         
         
