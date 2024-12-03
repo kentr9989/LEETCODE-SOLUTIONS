@@ -2,6 +2,37 @@ class Solution:
     # Time complexity : O(n)
     # Space complexity: O(1)
     def maxArea(self, height: List[int]) -> int:
+        l, r = 0, len(height) - 1
+        max_area = 0
+        while l < r:
+            curr_area = (r - l) * min(height[r],height[l])
+            max_area = max(curr_area,max_area)
+            if height[l] < height[r]:
+                l += 1
+            elif height[l] > height[r]:
+                r -= 1
+            else: 
+                r -= 1
+        return max_area
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         left,right = 0, len(height) - 1
         max_water = -1
         while left < right:
@@ -16,47 +47,5 @@ class Solution:
                 right -= 1
         return max_water
         
-#         res = 0  
-#         left, right = 0, len(height) - 1
-#         while left < right:
-#             area = (right - left) * min(height[left],height[right])
-#             res = max(res,area)
-#             if height[left] < height[right]:
-#                 left += 1
-#             elif height[left] > height[right]:
-#                 right -= 1
-#             else:
-#                 right -= 1
-                
-#         return res  
-        
-#         # init res 
-#         res = 0
-#         # init left pointer 0
-#         # init right pointer as length of height - 1
-#         left = 0
-#         right = len(height) - 1
-        
-#         # while left is less than right:
-#         #   area equal (right - left) * min(height[left],height[right])
-#         #   update res to be max of res or area
-#         #   if height of left < height of right:
-#         #       increment left pointer
-#         #   else if height of left > height of right:
-#         #       decrement right pointer
-#         #   else:
-#         #       increment either one
-        
-#         while left < right:
-#             area = (right - left) * min(height[left],height[right])
-#             res = max(area,res)
-#             if height[left] < height[right]:
-#                 left += 1
-#             elif height[left] > height[right]:
-#                 right -= 1
-#             else: 
-#                 right -= 1
-        
-#         #   return max res
-#         return res
+
         
