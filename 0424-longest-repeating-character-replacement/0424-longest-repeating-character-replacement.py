@@ -2,16 +2,73 @@ class Solution:
     # Space complexity : O(1) because only need to store 26 characters
     # Time complexity : Optimised O(n) not opt O(26n)
     def characterReplacement(self, s: str, k: int) -> int:
-        left = 0
-        char_set = {}
-        res = 0
-        for right in range(len(s)):
-            char_set[s[right]] = char_set.get(s[right],0) + 1
-            while (right - left + 1) - max(char_set.values()) > k:
-                char_set[s[left]] -= 1
-                left += 1
-            res = max(right - left + 1, res)
-        return res
+        # start with map with 26 characters key {key: characters, value: number of time occur}
+        s.lower()
+        map = {}
+        
+        # max_length = 0
+        # Start with left and right at 0
+        # while right < len(s):
+        #   add the character s[right] to map
+        #   curr_length = right - left + 1
+        #   if curr_length - max_char in map < k:
+        #       compare the curr_length and max_length
+        #   else:
+        #       if left < right:
+        #           decrease s[left] from map
+        #           increase left pointer by 1
+        
+        max_length = 0
+        left, right = 0,0
+        while right < len(s):
+            if s[right] not in map:
+                map[s[right]] = 0
+            map[s[right]] += 1
+            
+            curr_length = right - left + 1
+            curr_max_char = max(map.values())
+            # print(f"map: {map}")
+            # print(f"curr_length: {curr_length}")
+            # print(f"curr_max_char: {curr_max_char}")
+            if curr_length - curr_max_char <= k :
+                max_length = max(max_length,curr_length)
+            else:
+                if left < right:
+                    map[s[left]] -= 1
+                    left += 1
+            right += 1
+        
+        #  return max_length 
+        return max_length
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         left = 0
+#         char_set = {}
+#         res = 0
+#         for right in range(len(s)):
+#             char_set[s[right]] = char_set.get(s[right],0) + 1
+#             while (right - left + 1) - max(char_set.values()) > k:
+#                 char_set[s[left]] -= 1
+#                 left += 1
+#             res = max(right - left + 1, res)
+#         return res
         
         
         
