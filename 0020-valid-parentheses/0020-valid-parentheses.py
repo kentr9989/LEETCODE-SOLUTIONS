@@ -9,9 +9,9 @@ class Solution:
             if cs not in close_to_open: # open bracket
                 stack.append(cs)
             else: # close bracket
-                if len(stack) == 0:
-                    return False
-                if stack[-1] and close_to_open[cs] == stack[-1]:
+                # if len(stack) == 0:
+                #     return False
+                if stack and close_to_open[cs] == stack[-1]:
                 # if stack[-1]:
                     
                     stack.pop()
