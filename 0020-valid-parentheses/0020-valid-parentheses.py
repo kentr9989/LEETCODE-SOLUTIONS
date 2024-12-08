@@ -2,19 +2,59 @@ class Solution:
     # Time complexity : O(n)
     # Space complexity : O(n)
     def isValid(self, s: str) -> bool:
+        close_to_open = {"}": "{", "]" : "[", ")": "("}
         stack = []
-        close_to_open = {")" : "(" , "}" : "{", "]" : "["}
         
-        for char_s in s:
-            if char_s in close_to_open: # close tag
-                if stack and close_to_open[char_s] == stack[-1]:
+        for cs in s:
+            if cs not in close_to_open: # open bracket
+                stack.append(cs)
+            else: # close bracket
+                if len(stack) == 0:
+                    return False
+                if stack[-1] and close_to_open[cs] == stack[-1]:
+                # if stack[-1]:
+                    
                     stack.pop()
+                    # print(f"elem: {elem}")
+                    # print(f"close_to_open[cs]: {close_to_open[cs]}")
                 else:
                     return False
-            else: # open tag
-                stack.append(char_s)
         
-        return len(stack) == 0 # everything is pop
+        if len(stack) != 0: 
+            return False
+        return True
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#         stack = []
+#         close_to_open = {")" : "(" , "}" : "{", "]" : "["}
+        
+#         for char_s in s:
+#             if char_s in close_to_open: # close tag
+#                 if stack and close_to_open[char_s] == stack[-1]:
+#                     stack.pop()
+#                 else:
+#                     return False
+#             else: # open tag
+#                 stack.append(char_s)
+        
+#         return len(stack) == 0 # everything is pop
             
             
         
